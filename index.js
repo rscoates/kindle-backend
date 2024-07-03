@@ -4,6 +4,11 @@ const port = 80
 
 const getTrains = require('./get_trains')
 
+app.use((req, res, next) => {
+  console.log(req);
+  next();
+});
+
 app.use(express.static('public'));
 
 app.set('views', './views')
