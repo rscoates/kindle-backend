@@ -1,0 +1,27 @@
+html
+  head
+    title= title
+    link(rel='stylesheet', type='text/css', href='kindle.css')
+  body
+    .wrapper
+      .weather-widget(style='height: 210px;')
+        a.weatherwidget-io(href="https://forecast7.com/en/51d46n0d01/lewisham/" data-label_1="LEWISHAM" data-label_2="WEATHER TODAY" data-days="5")
+      .buffer 
+      .trains-widget
+        .trains-info 
+          .departure 
+            span.title St John's 
+          .arrival 
+            span.title Cannon St
+        each train in trains
+          .trains-info 
+            .departure 
+              .scheduled #{train.departureScheduled}
+              .actual #{train.departureDue}
+            .arrival
+              .scheduled #{train.arrivalScheduled}
+              .actual #{train.arrivalDue}
+      .recycling-widget
+        p Loading Recycling...
+    script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+    
