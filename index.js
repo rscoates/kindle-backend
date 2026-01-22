@@ -1,11 +1,12 @@
 const express = require('express')
 const app = express()
-const port = 80
+const port = 8088
 
 const getTrains = require('./get_trains')
+const getRecycling = require('./get_recycling')
 
 app.use((req, res, next) => {
-  console.log(req);
+  //console.log(req);
   next();
 });
 
@@ -16,8 +17,9 @@ app.set('views', './views')
 app.set('view engine', 'pug')
 
 app.get('/page', (req, res) => {
-  getTrains().then((data) => {
-    res.render('index', { trains: data })
+
+ Promise.all([getTrains(), getRecycling()]).then(([trains, recycling]) => {
+    res.render('index', { trains, recycling })
   })
 })
 

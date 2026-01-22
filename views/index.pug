@@ -24,9 +24,10 @@ html
       .trains-widget {
         font-family: Tahoma,Arial,Verdana,Segoe,sans-serif;
         text-align: center;
-        padding-top: 30px;
+        padding-top: 10px;
         font-size: 1.5em;
         height: 331.5px;
+        margin: auto auto;
       }
 
       .trains-widget .title {
@@ -48,6 +49,10 @@ html
       .trains-widget .arrival {
         width: 45%;
       }
+      
+      .trains-widget .train-buffer {
+        width: 10%;
+      }
 
       .buffer {
         height: 20px;
@@ -56,30 +61,32 @@ html
       .recycling-widget {
         font-family: Tahoma,Arial,Verdana,Segoe,sans-serif;
         text-align: center;
-        padding-top: 30px;
+        padding-top: 10px;
         font-size: 1.5em;
         height: 331.5px;
+        margin: auto auto;
       }
   body
     .wrapper
       .weather-widget(style='height: 210px;')
-        a.weatherwidget-io(href="https://forecast7.com/en/51d46n0d01/lewisham/" data-label_1="LEWISHAM" data-label_2="WEATHER TODAY" data-days="5")
-      .buffer 
+        a.weatherwidget-io(href="https://forecast7.com/en/51d51n0d30/ealing/" data-label_1="EALING" data-label_2="WEATHER TODAY" data-days="5")
       .trains-widget
         .trains-info 
           .departure 
-            span.title St John's 
+            span.title West Ealing
+          .train-buffer
           .arrival 
-            span.title Cannon St
+            span.title TCR
         each train in trains
           .trains-info 
             .departure 
               .scheduled #{train.departureScheduled}
               .actual #{train.departureDue}
+            .train-buffer
             .arrival
               .scheduled #{train.arrivalScheduled}
               .actual #{train.arrivalDue}
       .recycling-widget
-        p Loading Recycling...
+        h2 Next Collection
+        p #{recycling.date}: #{recycling.types}
     script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-    
