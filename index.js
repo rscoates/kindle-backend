@@ -17,9 +17,15 @@ app.set('views', './views')
 app.set('view engine', 'pug')
 
 app.get('/page', (req, res) => {
-
+ const d = new Date();
+ const hr = d.getHours();
+ let min = d.getMinutes();
+ if (min < 10) {
+    min = "0" + min;
+ }
+ const date = `${hr}:${min}`
  Promise.all([getTrains(), getRecycling()]).then(([trains, recycling]) => {
-    res.render('index', { trains, recycling })
+    res.render('index', { trains, recycling, date })
   })
 })
 

@@ -66,6 +66,10 @@ html
         height: 331.5px;
         margin: auto auto;
       }
+
+      .emboldened {
+        font-weight: bold;
+      }
   body
     .wrapper
       .weather-widget(style='height: 210px;')
@@ -88,5 +92,7 @@ html
               .actual #{train.arrivalDue}
       .recycling-widget
         h2 Next Collection
-        p #{recycling.date}: #{recycling.types}
+        p.emboldened #{recycling.date} 
+        p #{recycling.types}
+        p #{date}
     script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
