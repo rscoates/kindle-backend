@@ -26,8 +26,9 @@ const convertRecyclingType = (type) => {
 }
 
 const getRecycling = async () => {
-  const response = await fetch("https://www.ealing.gov.uk/site/custom_scripts/WasteCollectionWS/home/FindCollection", {
-    "headers": {
+  try {
+    const response = await fetch("https://www.ealing.gov.uk/site/custom_scripts/WasteCollectionWS/home/FindCollection", {
+      "headers": {
       "accept": "*/*",
       "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
       "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -58,11 +59,14 @@ const getRecycling = async () => {
   const nextDate = recyclingInfo[0].date;
   const nextCollections = recyclingInfo.filter(item => item.date.getTime() === nextDate.getTime());
 
-  return {
-    date: formatDate(nextCollections[0].date),
-    types: nextCollections.map(e => e.type).map(convertRecyclingType).join(', ')
+    return {
+      date: formatDate(nextCollections[0].date),
+      types: nextCollections.map(e => e.type).map(convertRecyclingType).join(', ')
+    }
+  } catch (error) {
+    console.error('Error fetching recycling data:', error.message)
+    return { date: 'Unknown', types: 'Unable to fetch recycling data' }
   }
-
 };
 
 module.exports = getRecycling;
