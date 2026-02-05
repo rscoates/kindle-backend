@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const WEST_EALING = 'WEA';
 const TCR = 'TCR';
-const DIRECT_JOURNEY_MAX = 20;
+const DIRECT_JOURNEY_MAX = 30;
 const TIME_NOW = new Date();
 const TIME_TO_STATION_MINUTES = 10;
 const TIME_TO_STATION = TIME_TO_STATION_MINUTES * 60 * 1000;
